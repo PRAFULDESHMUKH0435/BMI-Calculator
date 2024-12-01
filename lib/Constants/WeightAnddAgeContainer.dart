@@ -4,6 +4,7 @@ import 'package:provider/provider.dart';
 
 import '../Providers/HomeScreenProvider.dart';
 import 'WeightSelector.dart';
+
 class WeightAndAgeContainer extends StatefulWidget {
   const WeightAndAgeContainer({super.key});
 
@@ -19,7 +20,7 @@ class _WeightAndAgeContainerState extends State<WeightAndAgeContainer> {
       children: [
         Expanded(
           child: Container(
-            height: 150,
+            height: MediaQuery.sizeOf(context).height * .25,
             decoration: BoxDecoration(
               border: Border.all(color: const Color(0xFF717880)),
               borderRadius: const BorderRadius.all(Radius.circular(14.0)),
@@ -32,7 +33,7 @@ class _WeightAndAgeContainerState extends State<WeightAndAgeContainer> {
         ),
         Expanded(
           child: Container(
-            height: 150,
+            height: MediaQuery.sizeOf(context).height * .25,
             decoration: BoxDecoration(
               border: Border.all(color: const Color(0xFF717880)),
               borderRadius: const BorderRadius.all(Radius.circular(14.0)),

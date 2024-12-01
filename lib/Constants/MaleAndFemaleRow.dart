@@ -23,7 +23,7 @@ class _MaleAndFemaleRowState extends State<MaleAndFemaleRow> {
                 provider.ismale=true;
               },
               child: Container(
-                height: 150,
+                height: MediaQuery.sizeOf(context).height*.25,
                 decoration: BoxDecoration(
                   border: Border.all(color: const Color(0xFF717880)),
                   borderRadius: const BorderRadius.all(Radius.circular(14.0)),
@@ -32,16 +32,19 @@ class _MaleAndFemaleRowState extends State<MaleAndFemaleRow> {
                 margin: const EdgeInsets.all(12.0),
                 padding: const EdgeInsets.all(8.0),
                 child: Row(
+                  mainAxisAlignment: MainAxisAlignment.center,
                   children: <Widget>[
-                    Image.asset(
-                      'Assets/Images/male.png', // Placeholder image URL
-                      width: 50,
-                      height: 50,
+                    Expanded(
+                      child: Image.asset(
+                        'Assets/Images/male.png', // Placeholder image URL
+                      ),
                     ),
                     const SizedBox(width: 10), // Spacing between image and text
-                    const Text(
-                      'Male',
-                      style: AppStyles.maleandfemaletextstyle,
+                    Expanded(
+                      child: const Text(
+                        'Male',
+                        style: AppStyles.maleandfemaletextstyle,
+                      ),
                     ),
                   ],
                 ),
@@ -54,7 +57,7 @@ class _MaleAndFemaleRowState extends State<MaleAndFemaleRow> {
                 provider.ismale=false;
               },
               child: Container(
-                height: 150,
+                height: MediaQuery.sizeOf(context).height*.25,
                 margin: const EdgeInsets.all(12.0),
                 padding: const EdgeInsets.all(8.0),
                 decoration: BoxDecoration(
@@ -63,16 +66,19 @@ class _MaleAndFemaleRowState extends State<MaleAndFemaleRow> {
                   color: provider.ismale?const Color(0xFF2D2D37): const Color(0xFF043FCB),
                 ),
                 child: Row(
+                  mainAxisAlignment: MainAxisAlignment.center,
                   children: <Widget>[
-                    Image.asset(
-                      'Assets/Images/female.png', // Placeholder image URL
-                      width: 50,
-                      height: 50,
+                    Expanded(
+                      child: Image.asset(
+                        'Assets/Images/female.png', // Placeholder image URL
+                      ),
                     ),
                     const SizedBox(width: 10), // Spacing between image and text
-                    const Text(
-                      'Female',
-                      style: AppStyles.maleandfemaletextstyle,
+                    Expanded(
+                      child: const Text(
+                        'Female',
+                        style: AppStyles.maleandfemaletextstyle,
+                      ),
                     ),
                   ],
                 ),

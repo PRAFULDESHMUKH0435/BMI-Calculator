@@ -18,20 +18,6 @@ import 'package:timezone/data/latest.dart' as tz;
 Future main() async {
   tz.initializeTimeZones();
 
-  /// WorkManager Initialization
-  Workmanager().initialize(
-    callbackDispatcher, // The callback function to execute tasks
-    isInDebugMode: true, // Set to false in production
-  );
-
-  Workmanager().registerPeriodicTask(
-    "checkUserInactivity",
-    "periodicInactivityCheck",
-    frequency: const Duration(
-        hours: 15), // Runs daily (minimum interval supported is 15 minutes)
-    inputData: {"targetHour": 9}, // Pass 9:00 AM as input data
-  );
-
   /// Firebase Initialization
   WidgetsFlutterBinding.ensureInitialized();
   Localnotificationservice.initnotifications();
@@ -49,9 +35,26 @@ Future main() async {
                 "bmi-calculator-a3ddc", // project_id     (App Level googleservices.json)
           ),
         )
-      : await Firebase.initializeApp();
+      : null;
 
   /// Local Notifications
+  /// /// WorkManager Initialization
+  Workmanager().initialize(
+    callbackDispatcher, // The callback function to execute tasks
+    // isInDebugMode: true, // Set to false in production
+  );
+
+  if (Platform.isAndroid) {
+  Workmanager().registerPeriodicTask(
+    "checkUserInactivity",
+    "periodicInactivityCheck",
+    frequency: const Duration(hours: 15), // Minimum interval is 15 minutes
+    inputData: {"targetHour": 9},
+  );
+} else {
+  print("Workmanager periodic tasks are not supported on this platform.");
+}
+
 
   /// OneSignal Initialization
   OneSignal.initialize("f03a0986-0aac-4751-b89a-3e5c6dad637a");

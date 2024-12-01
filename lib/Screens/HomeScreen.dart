@@ -35,7 +35,6 @@ class _HomeScreenState extends State<HomeScreen> {
     super.initState();
   }
 
-
   Future checkInternetConnection() async {
     final connectivityResult = await _connectivity.checkConnectivity();
     print("Internet Status Is : $connectivityResult");
@@ -108,7 +107,7 @@ class _HomeScreenState extends State<HomeScreen> {
                     color: const Color(0xFF2D2D37),
                   ),
                   margin: const EdgeInsets.all(12.0),
-                  height: 120,
+                  height: MediaQuery.sizeOf(context).height * .20,
                   child: const CustomRangeSlider(),
                 ),
 
@@ -134,77 +133,79 @@ class _HomeScreenState extends State<HomeScreen> {
           ),
         ),
 
-        /// BOTTOM NAVIGATION BAR
-        bottomNavigationBar: SafeArea(
-          child: SizedBox(
-            width: MediaQuery.of(context).size.width, // Ensure full width
-            child: AnimatedNotchBottomBar(
-              durationInMilliSeconds: 500,
-              elevation: 2.0,
-              notchColor: const Color(0xFF99D9D9),
-              color: const Color(0xFF0540CA),
-              kBottomRadius: 20,
-              kIconSize: 30,
-              onTap: (newidx) async {
-                provider.currentscreenidx = newidx;
-                if (provider.currentscreenidx == 0) {
-                  Navigator.push(
-                      context,
-                      MaterialPageRoute(
-                          builder: (context) => const AboutUsScreen()));
-                } else if (provider.currentscreenidx == 1) {
-                  provider.CalculateUserBMI(context);
-                  showModalBottomSheet(
-                      context: context,
-                      builder: (context) {
-                        return showBottomSheetForDialog();
-                      });
-                } else {
-                  Navigator.push(
-                      context,
-                      MaterialPageRoute(
-                          builder: (context) => const UserHistoryScreen()));
-                }
-              },
-              notchBottomBarController:
-                  NotchBottomBarController(index: provider.currentscreenidx),
-              bottomBarItems: const [
-                BottomBarItem(
-                  inActiveItem: Icon(
-                    Icons.person_outline,
-                    color: Colors.grey,
+        bottomNavigationBar: Container(
+          width: MediaQuery.sizeOf(context).width,
+          child: AnimatedNotchBottomBar(
+            durationInMilliSeconds: 500,
+            elevation: 2.0,
+            notchColor: const Color(0xFF99D9D9),
+            color: const Color(0xFF0540CA),
+            kBottomRadius: 20,
+            kIconSize: 30,
+            onTap: (newIdx) async {
+              provider.currentscreenidx = newIdx;
+              if (provider.currentscreenidx == 0) {
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                    builder: (context) => const AboutUsScreen(),
                   ),
-                  activeItem: Icon(
-                    Icons.person_outline,
-                    color: Colors.white,
+                );
+              } else if (provider.currentscreenidx == 1) {
+                provider.CalculateUserBMI(context);
+                showModalBottomSheet(
+                  context: context,
+                  builder: (context) {
+                    return showBottomSheetForDialog();
+                  },
+                );
+              } else {
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                    builder: (context) => const UserHistoryScreen(),
+                  ),
+                );
+              }
+            },
+            notchBottomBarController:
+                NotchBottomBarController(index: provider.currentscreenidx),
+            bottomBarItems: const [
+              BottomBarItem(
+                inActiveItem: Icon(
+                  Icons.person_outline,
+                  color: Colors.grey,
+                ),
+                activeItem: Icon(
+                  Icons.person_outline,
+                  color: Colors.white,
+                ),
+              ),
+              BottomBarItem(
+                inActiveItem: CircleAvatar(
+                  backgroundColor: Color(0xFF99D9D9),
+                  radius: 30,
+                  child: Text(
+                    "BMI",
                   ),
                 ),
-                BottomBarItem(
-                  inActiveItem: CircleAvatar(
-                    backgroundColor: Color(0xFF99D9D9),
-                    radius: 30,
-                    child: Text(
-                      "BMI ",
-                    ),
-                  ),
-                  activeItem: CircleAvatar(
-                    backgroundColor: Color(0xFF99D9D9),
-                    radius: 30,
-                    child: Text("BMI "),
-                  ),
+                activeItem: CircleAvatar(
+                  backgroundColor: Color(0xFF99D9D9),
+                  radius: 30,
+                  child: Text("BMI"),
                 ),
-                BottomBarItem(
-                  inActiveItem: Icon(
-                    Icons.history,
-                    color: Colors.grey,
-                  ),
-                  activeItem: Icon(
-                    Icons.history,
-                    color: Colors.white,
-                  ),
-                )
-              ],
-            ),
+              ),
+              BottomBarItem(
+                inActiveItem: Icon(
+                  Icons.history,
+                  color: Colors.grey,
+                ),
+                activeItem: Icon(
+                  Icons.history,
+                  color: Colors.white,
+                ),
+              )
+            ],
           ),
         ),
       ),
