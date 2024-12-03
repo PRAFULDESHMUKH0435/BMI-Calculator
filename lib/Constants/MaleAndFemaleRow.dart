@@ -40,8 +40,8 @@ class _MaleAndFemaleRowState extends State<MaleAndFemaleRow> {
                       ),
                     ),
                     const SizedBox(width: 10), // Spacing between image and text
-                    Expanded(
-                      child: const Text(
+                    const Expanded(
+                      child: Text(
                         'Male',
                         style: AppStyles.maleandfemaletextstyle,
                       ),
@@ -74,8 +74,8 @@ class _MaleAndFemaleRowState extends State<MaleAndFemaleRow> {
                       ),
                     ),
                     const SizedBox(width: 10), // Spacing between image and text
-                    Expanded(
-                      child: const Text(
+                    const Expanded(
+                      child: Text(
                         'Female',
                         style: AppStyles.maleandfemaletextstyle,
                       ),

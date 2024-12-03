@@ -13,8 +13,6 @@ import 'package:bmicalculator/Services/localnotificationservice.dart';
 import 'package:connectivity_plus/connectivity_plus.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
-import 'package:shared_preferences/shared_preferences.dart';
-import 'package:workmanager/workmanager.dart';
 
 class HomeScreen extends StatefulWidget {
   const HomeScreen({super.key});
@@ -133,80 +131,79 @@ class _HomeScreenState extends State<HomeScreen> {
           ),
         ),
 
-        bottomNavigationBar: Container(
-          width: MediaQuery.sizeOf(context).width,
-          child: AnimatedNotchBottomBar(
-            durationInMilliSeconds: 500,
-            elevation: 2.0,
-            notchColor: const Color(0xFF99D9D9),
-            color: const Color(0xFF0540CA),
-            kBottomRadius: 20,
-            kIconSize: 30,
-            onTap: (newIdx) async {
-              provider.currentscreenidx = newIdx;
-              if (provider.currentscreenidx == 0) {
-                Navigator.push(
-                  context,
-                  MaterialPageRoute(
-                    builder: (context) => const AboutUsScreen(),
-                  ),
-                );
-              } else if (provider.currentscreenidx == 1) {
-                provider.CalculateUserBMI(context);
-                showModalBottomSheet(
-                  context: context,
-                  builder: (context) {
-                    return showBottomSheetForDialog();
-                  },
-                );
-              } else {
-                Navigator.push(
-                  context,
-                  MaterialPageRoute(
-                    builder: (context) => const UserHistoryScreen(),
-                  ),
-                );
-              }
-            },
-            notchBottomBarController:
-                NotchBottomBarController(index: provider.currentscreenidx),
-            bottomBarItems: const [
-              BottomBarItem(
-                inActiveItem: Icon(
-                  Icons.person_outline,
-                  color: Colors.grey,
+        floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,
+        bottomNavigationBar: AnimatedNotchBottomBar(
+          durationInMilliSeconds: 500,
+          elevation: 2.0,
+          notchColor: const Color(0xFF99D9D9),
+          color: const Color(0xFF0540CA),
+          kBottomRadius: 20,
+          kIconSize: 30,
+          onTap: (newIdx) async {
+            provider.currentscreenidx = newIdx;
+            if (provider.currentscreenidx == 0) {
+              Navigator.push(
+                context,
+                MaterialPageRoute(
+                  builder: (context) => const AboutUsScreen(),
                 ),
-                activeItem: Icon(
-                  Icons.person_outline,
-                  color: Colors.white,
+              );
+            } else if (provider.currentscreenidx == 1) {
+              provider.CalculateUserBMI(context);
+              showModalBottomSheet(
+                context: context,
+                builder: (context) {
+                  return showBottomSheetForDialog();
+                },
+              );
+            } else {
+              Navigator.push(
+                context,
+                MaterialPageRoute(
+                  builder: (context) => const UserHistoryScreen(),
+                ),
+              );
+            }
+          },
+          notchBottomBarController:
+              NotchBottomBarController(index: provider.currentscreenidx),
+          bottomBarWidth: MediaQuery.of(context).size.width,
+          bottomBarItems: const [
+            BottomBarItem(
+              inActiveItem: Icon(
+                Icons.person_outline,
+                color: Colors.grey,
+              ),
+              activeItem: Icon(
+                Icons.person_outline,
+                color: Colors.white,
+              ),
+            ),
+            BottomBarItem(
+              inActiveItem: CircleAvatar(
+                backgroundColor: Color(0xFF99D9D9),
+                radius: 30,
+                child: Text(
+                  "BMI",
                 ),
               ),
-              BottomBarItem(
-                inActiveItem: CircleAvatar(
-                  backgroundColor: Color(0xFF99D9D9),
-                  radius: 30,
-                  child: Text(
-                    "BMI",
-                  ),
-                ),
-                activeItem: CircleAvatar(
-                  backgroundColor: Color(0xFF99D9D9),
-                  radius: 30,
-                  child: Text("BMI"),
-                ),
+              activeItem: CircleAvatar(
+                backgroundColor: Color(0xFF99D9D9),
+                radius: 30,
+                child: Text("BMI"),
               ),
-              BottomBarItem(
-                inActiveItem: Icon(
-                  Icons.history,
-                  color: Colors.grey,
-                ),
-                activeItem: Icon(
-                  Icons.history,
-                  color: Colors.white,
-                ),
-              )
-            ],
-          ),
+            ),
+            BottomBarItem(
+              inActiveItem: Icon(
+                Icons.history,
+                color: Colors.grey,
+              ),
+              activeItem: Icon(
+                Icons.history,
+                color: Colors.white,
+              ),
+            )
+          ],
         ),
       ),
     );
