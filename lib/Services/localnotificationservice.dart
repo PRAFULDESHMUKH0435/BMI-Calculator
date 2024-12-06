@@ -39,7 +39,7 @@ class Localnotificationservice {
   static Future ScheduleNotification(String bmicategory) async {
     try {
       final scheduledTime =
-          tz.TZDateTime.now(tz.local).add(const Duration(minutes: 15));
+          tz.TZDateTime.now(tz.local).add(const Duration(minutes: 5));
 
       await flutterLocalNotificationsPlugin.zonedSchedule(
         2,

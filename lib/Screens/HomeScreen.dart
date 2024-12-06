@@ -80,6 +80,19 @@ class _HomeScreenState extends State<HomeScreen> {
             "BMI Calculator",
             style: AppStyles.titlestyle,
           ),
+          // actions: [
+          //   GestureDetector(
+          //     onTap: (){
+          //        Navigator.of(context).push(Routes.createRoute(const WaterManagerScreen()));
+          //     },
+          //     child: Container(
+          //       margin: const EdgeInsets.only(right: 8.0),
+          //       width: 50,
+          //       height: 40,
+          //       child: Lottie.asset("Assets/Lottie/cup_animation.json"),
+          //     ),
+          //   )
+          // ],
         ),
 
         ///BODY
@@ -252,7 +265,7 @@ class _HomeScreenState extends State<HomeScreen> {
         ),
       ),
       child: SingleChildScrollView(
-        // Added SingleChildScrollView
+        scrollDirection: Axis.vertical,
         child: Column(
           mainAxisSize: MainAxisSize.min, // Adjust to min to avoid overflow
           mainAxisAlignment: MainAxisAlignment.center,
@@ -265,7 +278,7 @@ class _HomeScreenState extends State<HomeScreen> {
                 fontWeight: FontWeight.bold,
               ),
             ),
-            const SizedBox(height: 10),
+            const SizedBox(height: 8),
             Text(
               '${provider.BMI}',
               style: const TextStyle(
@@ -276,12 +289,12 @@ class _HomeScreenState extends State<HomeScreen> {
             ),
             const Text(
               'Kg/m²',
-              style: TextStyle(
+              style:TextStyle(
                 color: Colors.white,
                 fontSize: 24,
               ),
             ),
-            const SizedBox(height: 10),
+            // const SizedBox(height: 10),
             Text(
               provider.bmicategory,
               style: const TextStyle(
@@ -290,7 +303,7 @@ class _HomeScreenState extends State<HomeScreen> {
                 fontWeight: FontWeight.bold,
               ),
             ),
-            const SizedBox(height: 10),
+            const SizedBox(height: 8),
             Text(
               'Height : ${provider.selectedHeight.toStringAsFixed(2)} Ft | Weight : ${provider.selectedWeight} kilograms',
               style: const TextStyle(
@@ -298,7 +311,7 @@ class _HomeScreenState extends State<HomeScreen> {
                 fontSize: 16,
               ),
             ),
-            const SizedBox(height: 20),
+            const SizedBox(height: 10),
             Text(
               'A BMI of ${provider.BMI.toInt()} is in the ${provider.bmicategory} category for your height. '
               '${provider.BMISuggestions}',
@@ -308,7 +321,7 @@ class _HomeScreenState extends State<HomeScreen> {
               ),
               textAlign: TextAlign.center,
             ),
-            const SizedBox(height: 20),
+            const SizedBox(height: 8),
             GestureDetector(
                 onTap: () {
                   UserDataModel usermodel = UserDataModel(
@@ -318,7 +331,7 @@ class _HomeScreenState extends State<HomeScreen> {
                       weight: provider.selectedWeight.toDouble().toString(),
                       age: provider.selectedAge.toDouble().toString(),
                       result: provider.bmicategory);
-
+        
                   _moveToNextScreen(context, usermodel);
                   // AdHelper.ShowInterstitialAds(context,usermodel);
                 },

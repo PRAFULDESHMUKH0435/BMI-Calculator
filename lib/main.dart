@@ -1,14 +1,13 @@
 import 'dart:async';
 import 'dart:io';
+import 'package:bmicalculator/Screens/splashscreen.dart';
 import 'package:bmicalculator/Services/localnotificationservice.dart';
-import 'package:device_preview/device_preview.dart';
 import 'package:flutter/material.dart';
 import 'package:onesignal_flutter/onesignal_flutter.dart';
 import 'package:provider/provider.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:workmanager/workmanager.dart';
 import 'Hive/UserData.dart';
-import 'Screens/HomeScreen.dart';
 import 'Providers/HomeScreenProvider.dart';
 import 'package:hive/hive.dart';
 import 'package:path_provider/path_provider.dart';
@@ -68,10 +67,7 @@ Future main() async {
   await Hive.openBox("BMIHistory");
 
   /// Ads Initialization
-  runApp(DevicePreview(
-    enabled: true,
-    builder: (context) => const MyApp(),
-  ));
+  runApp(const MyApp());
 }
 
 void callbackDispatcher() {
@@ -109,7 +105,7 @@ class MyApp extends StatelessWidget {
       create: (context) => HomeScreenProvider(),
       child: const MaterialApp(
         debugShowCheckedModeBanner: false,
-        home: HomeScreen(),
+        home: SplashScreen(),
       ),
     );
   }
