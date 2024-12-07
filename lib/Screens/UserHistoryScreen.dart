@@ -12,7 +12,6 @@ class UserHistoryScreen extends StatefulWidget {
 }
 
 class _UserHistoryScreenState extends State<UserHistoryScreen> {
-
   @override
   void initState() {
     super.initState();
@@ -21,13 +20,6 @@ class _UserHistoryScreenState extends State<UserHistoryScreen> {
   @override
   Widget build(BuildContext context) {
     final provider = Provider.of<HomeScreenProvider>(context);
-    print(
-        "Length: ${provider.bmihistoryitems.length} And List Of Data Is ${provider.bmihistoryitems}");
-
-    // Calculate the total count to include ads
-    final itemCount = provider.bmihistoryitems.length +
-        (provider.bmihistoryitems.length ~/ 4);
-
     return Scaffold(
       appBar: AppBar(
         backgroundColor: const Color(0xFF21232F),
@@ -70,17 +62,16 @@ class _UserHistoryScreenState extends State<UserHistoryScreen> {
               ),
             )
           : ListView.builder(
-              itemCount: itemCount,
+              itemCount: provider.bmihistoryitems.length, // Total data items
               itemBuilder: (context, index) {
-                  final dataIndex = index - (index ~/ 4);
-                  final eachData = provider.bmihistoryitems[dataIndex];
-                  print("EachData Is $eachData");
-                  return Card(
-                    color: const Color(0xFF0540CA),
-                    elevation: 4.0,
-                    margin: const EdgeInsets.all(8.0),
-                    child: ReUsableCardForHistory(data: eachData),
-                  );
+                final eachData = provider.bmihistoryitems[index];
+
+                return Card(
+                  color: const Color(0xFF0540CA),
+                  elevation: 4.0,
+                  margin: const EdgeInsets.all(8.0),
+                  child: ReUsableCardForHistory(data: eachData),
+                );
               },
             ),
     );

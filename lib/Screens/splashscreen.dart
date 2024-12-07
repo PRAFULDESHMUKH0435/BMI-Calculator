@@ -1,4 +1,5 @@
 import 'package:bmicalculator/Constants/RouteAnimation.dart';
+import 'package:bmicalculator/Helper/mobileads.dart';
 import 'package:bmicalculator/Screens/HomeScreen.dart';
 import 'package:flutter/material.dart';
 import 'package:lottie/lottie.dart';
@@ -11,14 +12,17 @@ class SplashScreen extends StatefulWidget {
 }
 
 class _SplashScreenState extends State<SplashScreen> {
-
   @override
   void initState() {
-   Future.delayed(const Duration(seconds: 3),(){
-      Navigator.of(context).pushReplacement(Routes.createRoute(const HomeScreen()));
-   });
+    GoogleMobileAds.loadInterstitialAd();
+    GoogleMobileAds.loadAboutUsBannerAd();
+    Future.delayed(const Duration(seconds: 3), () {
+      Navigator.of(context)
+          .pushReplacement(Routes.createRoute(const HomeScreen()));
+    });
     super.initState();
   }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(

@@ -1,4 +1,5 @@
 import 'package:bmicalculator/Constants/styles.dart';
+import 'package:bmicalculator/Helper/mobileads.dart';
 import 'package:bmicalculator/Providers/HomeScreenProvider.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
@@ -58,6 +59,10 @@ class _AboutUsScreenState extends State<AboutUsScreen> {
             ),
           ],
         ),
+      ),
+      
+      bottomNavigationBar: Container(
+        child: GoogleMobileAds.showBannerAd(),
       ),
     );
   }

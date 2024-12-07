@@ -1,4 +1,5 @@
 import 'package:bmicalculator/Constants/CustomLoadingIcon.dart';
+import 'package:bmicalculator/Helper/mobileads.dart';
 import 'package:bmicalculator/Services/DataService.dart';
 import 'package:flutter/material.dart';
 import '../Constants/styles.dart';
@@ -41,6 +42,8 @@ class _DietplansscreenState extends State<Dietplansscreen> {
   void initState() {
     super.initState();
     _startBotConversation();
+    GoogleMobileAds.loadInterstitialAd();
+    GoogleMobileAds.loadAboutUsBannerAd();
   }
 
   // Function to start the bot conversation

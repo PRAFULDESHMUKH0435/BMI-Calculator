@@ -3,6 +3,7 @@ import 'dart:io';
 import 'package:bmicalculator/Screens/splashscreen.dart';
 import 'package:bmicalculator/Services/localnotificationservice.dart';
 import 'package:flutter/material.dart';
+import 'package:google_mobile_ads/google_mobile_ads.dart';
 import 'package:onesignal_flutter/onesignal_flutter.dart';
 import 'package:provider/provider.dart';
 import 'package:shared_preferences/shared_preferences.dart';
@@ -15,11 +16,13 @@ import 'package:firebase_core/firebase_core.dart';
 import 'package:timezone/data/latest.dart' as tz;
 
 Future main() async {
+  
   tz.initializeTimeZones();
 
   /// Firebase Initialization
   WidgetsFlutterBinding.ensureInitialized();
   Localnotificationservice.initnotifications();
+  MobileAds.instance.initialize();
 
   Platform.isAndroid
       ? await Firebase.initializeApp(

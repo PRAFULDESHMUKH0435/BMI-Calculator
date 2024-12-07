@@ -3,6 +3,7 @@ import 'package:another_flushbar/flushbar.dart';
 import 'package:bmicalculator/Constants/CustomRangeSlider.dart';
 import 'package:bmicalculator/Constants/MaleAndFemaleRow.dart';
 import 'package:bmicalculator/Constants/WeightAnddAgeContainer.dart';
+import 'package:bmicalculator/Helper/mobileads.dart';
 import 'package:bmicalculator/Model/UserDataModel.dart';
 import 'package:bmicalculator/Providers/HomeScreenProvider.dart';
 import 'package:bmicalculator/Constants/styles.dart';
@@ -30,6 +31,8 @@ class _HomeScreenState extends State<HomeScreen> {
   void initState() {
     checkInternetConnection();
     Localnotificationservice.AddLastLoginDate();
+    GoogleMobileAds.loadInterstitialAd();
+    GoogleMobileAds.loadAboutUsBannerAd();
     super.initState();
   }
 
@@ -332,8 +335,12 @@ class _HomeScreenState extends State<HomeScreen> {
                       age: provider.selectedAge.toDouble().toString(),
                       result: provider.bmicategory);
         
-                  _moveToNextScreen(context, usermodel);
-                  // AdHelper.ShowInterstitialAds(context,usermodel);
+                  // _moveToNextScreen(context, usermodel);
+                  if(GoogleMobileAds.isAdLoaded){
+                       GoogleMobileAds.showVideoAd(context,usermodel);
+                  }else{
+                       _moveToNextScreen(context, usermodel);
+                  }
                 },
                 child: const Text(
                   "Check Out Diet Plans ->",
