@@ -86,7 +86,7 @@ class GoogleMobileAds {
         child: AdWidget(ad: _bannerAd),
       );
     } else {
-      return SizedBox(); // Placeholder if ad isn't loaded yet
+      return const SizedBox(); // Placeholder if ad isn't loaded yet
     }
   }
 
