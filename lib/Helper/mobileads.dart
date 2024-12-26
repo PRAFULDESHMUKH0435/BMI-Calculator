@@ -15,7 +15,7 @@ class GoogleMobileAds {
   static void loadAboutUsBannerAd() {
     _bannerAd = BannerAd(
       adUnitId:
-          'ca-app-pub-4703568558118663/2487055437', // Test Banner Ad Unit ID
+          'ca-app-pub-4703568558118663/8668876864', // Test Banner Ad Unit ID
       size: AdSize.banner,
       request: const AdRequest(),
       listener: BannerAdListener(
@@ -35,7 +35,7 @@ class GoogleMobileAds {
 
   static loadInterstitialAd() {
     InterstitialAd.load(
-      adUnitId: 'ca-app-pub-4703568558118663/5515579421',
+      adUnitId: 'ca-app-pub-4703568558118663/5951214189',
       request: const AdRequest(),
       adLoadCallback: InterstitialAdLoadCallback(
         onAdLoaded: (InterstitialAd ad) {

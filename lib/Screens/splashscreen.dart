@@ -1,8 +1,8 @@
-import 'package:bmicalculator/Constants/RouteAnimation.dart';
 import 'package:bmicalculator/Helper/mobileads.dart';
-import 'package:bmicalculator/Screens/HomeScreen.dart';
 import 'package:flutter/material.dart';
-import 'package:lottie/lottie.dart';
+
+import '../Constants/RouteAnimation.dart';
+import 'HomeScreen.dart';
 
 class SplashScreen extends StatefulWidget {
   const SplashScreen({super.key});
@@ -16,7 +16,7 @@ class _SplashScreenState extends State<SplashScreen> {
   void initState() {
     GoogleMobileAds.loadInterstitialAd();
     GoogleMobileAds.loadAboutUsBannerAd();
-    Future.delayed(const Duration(seconds: 3), () {
+    Future.delayed(const Duration(seconds: 5), () {
       Navigator.of(context)
           .pushReplacement(Routes.createRoute(const HomeScreen()));
     });
@@ -27,7 +27,13 @@ class _SplashScreenState extends State<SplashScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: const Color(0xFF181822),
-      body: Center(child: Lottie.asset("Assets/Lottie/splash_anim.json")),
+      body: Container(
+        decoration:const BoxDecoration(
+          image: DecorationImage(
+            fit: BoxFit.fill,
+            image: AssetImage("Assets/Lottie/splash_anim.gif"))
+        ),
+      ),
     );
   }
 }

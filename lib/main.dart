@@ -2,6 +2,7 @@ import 'dart:async';
 import 'dart:io';
 import 'package:bmicalculator/Screens/splashscreen.dart';
 import 'package:bmicalculator/Services/localnotificationservice.dart';
+import 'package:device_preview/device_preview.dart';
 import 'package:flutter/material.dart';
 import 'package:google_mobile_ads/google_mobile_ads.dart';
 import 'package:onesignal_flutter/onesignal_flutter.dart';
@@ -71,6 +72,7 @@ Future main() async {
 
   /// Ads Initialization
   runApp(const MyApp());
+    // child: const MyApp()));
 }
 
 void callbackDispatcher() {

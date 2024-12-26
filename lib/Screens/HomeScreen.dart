@@ -4,7 +4,6 @@ import 'package:bmicalculator/Constants/CustomRangeSlider.dart';
 import 'package:bmicalculator/Constants/MaleAndFemaleRow.dart';
 import 'package:bmicalculator/Constants/WeightAnddAgeContainer.dart';
 import 'package:bmicalculator/Helper/mobileads.dart';
-import 'package:bmicalculator/Helper/playstoreServices.dart';
 import 'package:bmicalculator/Model/UserDataModel.dart';
 import 'package:bmicalculator/Providers/HomeScreenProvider.dart';
 import 'package:bmicalculator/Constants/styles.dart';
@@ -85,19 +84,6 @@ class _HomeScreenState extends State<HomeScreen> {
             "BMI Calculator",
             style: AppStyles.titlestyle,
           ),
-          // actions: [
-          //   GestureDetector(
-          //     onTap: (){
-          //        Navigator.of(context).push(Routes.createRoute(const WaterManagerScreen()));
-          //     },
-          //     child: Container(
-          //       margin: const EdgeInsets.only(right: 8.0),
-          //       width: 50,
-          //       height: 40,
-          //       child: Lottie.asset("Assets/Lottie/cup_animation.json"),
-          //     ),
-          //   )
-          // ],
         ),
 
         ///BODY

@@ -58,6 +58,7 @@ dependencies:
   google_mobile_ads: ^5.2.0
   in_app_review: ^2.0.10
   in_app_update: ^4.2.3
+  flutter_svg: ^2.0.16
 
 dev_dependencies:
   flutter_test:

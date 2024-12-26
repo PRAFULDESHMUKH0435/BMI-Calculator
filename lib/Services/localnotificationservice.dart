@@ -25,6 +25,16 @@ class Localnotificationservice {
             macOS: initializationSettingsDarwin,
             linux: initializationSettingsLinux);
 
+    // Request permission explicitly (for iOS/macOS)
+    await flutterLocalNotificationsPlugin
+        .resolvePlatformSpecificImplementation<
+            IOSFlutterLocalNotificationsPlugin>()
+        ?.requestPermissions(
+          alert: true,
+          badge: true,
+          sound: true,
+        );
+
     flutterLocalNotificationsPlugin.initialize(initializationSettings,
         onDidReceiveNotificationResponse: (details) {});
   }
@@ -39,7 +49,7 @@ class Localnotificationservice {
   static Future ScheduleNotification(String bmicategory) async {
     try {
       final scheduledTime =
-          tz.TZDateTime.now(tz.local).add(const Duration(minutes: 5));
+          tz.TZDateTime.now(tz.local).add(const Duration(minutes: 2));
 
       await flutterLocalNotificationsPlugin.zonedSchedule(
         2,
@@ -68,7 +78,7 @@ class Localnotificationservice {
     }
   }
 
-/// Show Simple Notification
+  /// Show Simple Notification
   static Future showSimpleNotifications() async {
     AddLastLoginDate();
 
